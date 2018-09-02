@@ -11,8 +11,7 @@ namespace HighSchool
             
             do
             {
-                var userInput = Console.ReadLine();
-                inputManager.StudentInformation(userInput);
+                inputManager.StudentInformation(Console.ReadLine());
             } while (Console.ReadLine() != "exit");
             
         }

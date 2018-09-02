@@ -2,6 +2,7 @@
 using Datalayer.Interfaces;
 using Entities;
 using HighSchoolManagement;
+using HighSchoolManagement.Factories;
 using System;
 
 namespace UserInputManager
@@ -15,21 +16,21 @@ namespace UserInputManager
 
         private void Welcome()
         {
-            string welcomeMenu = "Welcome to Junior High School! \nHere is a list of our students: \n";
+            string welcomeText = "Welcome to Junior High School! \nHere is a list of our students: \n";
             
             foreach (var student in DataFactory.GetStudent().RetrieveObjects())
             {
-                welcomeMenu += " - " + student.Name + " \n";
+                welcomeText += " - " + student.Name + " \n";
             }
 
-            welcomeMenu += "Type student name in order to retrieve information about them:";
+            welcomeText += "Type student name in order to retrieve information about them: ";
 
-            Console.WriteLine(welcomeMenu);
+            Console.Write(welcomeText);
         }
 
         public void StudentInformation(string userInput)
         {
-            var studentManagement = new StudentsManagement();
+            var studentManagement = ManagementFactory.StudentsManagement();
             Console.WriteLine(studentManagement.StudentInformation(userInput));
         }
     }

@@ -26,12 +26,13 @@ namespace HighSchoolManagement
                 studentId = ManagementFactory.StudentDetailsService().GetStudentId(studentName);
                 var studentRecords = DataFactory.GetGrades().RetrieveObjects().Where(x => x.StudentId == studentId);
 
-                studentInfo += studentName + " is attending the following classes: \n";
+                studentInfo += "\n" + studentName + " is attending the following classes: \n";
 
                 foreach (var gradeId in studentRecords)
                 {
                     ClassSubjectIdList.Add(gradeId.ClassId);
                 }
+
                 ClassSubjectIdList = ClassSubjectIdList.Distinct().ToList();
 
                 foreach (var classSubjectId in ClassSubjectIdList)
@@ -40,10 +41,14 @@ namespace HighSchoolManagement
                     subjectId = classSubjectsService.GetClassSubjectById(clasSubjectName);
 
                     studentInfo += clasSubjectName 
-                        + " with average grade of: " + gradesManagement.ClassAverageGrade(subjectId) 
-                        + " and highest grade of: " + gradesManagement.ClassHighestGrade(subjectId) + "\n";
+                        + " with average grade: " + gradesManagement.StudentAverageGrade(subjectId, studentId) 
+                        + " out of: " + gradesManagement.ClassAverageGrade(subjectId)
+                        + " and highest grade: " + gradesManagement.StudentHighestGrade(subjectId, studentId)
+                        + " out of: " + gradesManagement.ClassHighestGrade(subjectId)
+                        + "\n";
                 }
-            } else
+            }
+            else
             {
                 studentInfo = "Enter valid student name, please.";
             }

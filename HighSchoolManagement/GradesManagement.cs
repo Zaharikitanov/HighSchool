@@ -26,18 +26,37 @@ namespace HighSchoolManagement
             return GetClassGrades(subjectClassId).Max();
         }
 
-        private List<int> GetClassGrades(int subjectClassId)
+        public double StudentAverageGrade(int subjectClassId, int studentId)
+        {
+            return Math.Round(GetClassGrades(subjectClassId, studentId).Average(), 2);
+        }
+
+        public double StudentHighestGrade(int subjectClassId, int studentId)
+        {
+            return GetClassGrades(subjectClassId, studentId).Max();
+        }
+
+        private List<int> GetClassGrades(int subjectClassId, int studentId = 0)
         {
             List<int> gradesList = new List<int>();
 
             foreach (var grade in _gradesData.RetrieveObjects())
             {
-                if (grade.ClassId == subjectClassId)
+                if (studentId == 0)
                 {
-                    gradesList.Add(grade.StudentGrade);
+                    if (grade.ClassId == subjectClassId)
+                    {
+                        gradesList.Add(grade.StudentGrade);
+                    }
+                } else
+                {
+                    if (grade.ClassId == subjectClassId && grade.StudentId == studentId)
+                    {
+                        gradesList.Add(grade.StudentGrade);
+                    }
                 }
             }
-            return gradesList;
+            return gradesList.Distinct().ToList();
         }
     }
 }

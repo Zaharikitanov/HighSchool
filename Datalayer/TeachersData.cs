@@ -14,8 +14,8 @@ namespace Datalayer
             this.ObjectsList = new List<ITeacher>()
             {
                 EntityFactory.CreateTeacher(111, "Johnson", 109),
-                EntityFactory.CreateTeacher(111, "Vernon", 108),
-                EntityFactory.CreateTeacher(111, "Dunn", 107)
+                EntityFactory.CreateTeacher(222, "Vernon", 108),
+                EntityFactory.CreateTeacher(333, "Dunn", 107)
             };
 
             return this.ObjectsList;

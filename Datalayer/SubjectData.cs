@@ -15,7 +15,7 @@ namespace Datalayer
             {
                 EntityFactory.CreateSubjectClass(109, "History"),
                 EntityFactory.CreateSubjectClass(108, "Mathematics"),
-                EntityFactory.CreateSubjectClass(107, "Mathematics")
+                EntityFactory.CreateSubjectClass(107, "Physics")
             };
 
             return this.ObjectsList;
