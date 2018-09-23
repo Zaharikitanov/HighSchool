@@ -12,7 +12,7 @@ namespace HighSchoolManagement.Services
             _studentsData = studentsData;
         }
 
-        public int GetStudentId (string name)
+        public int GetStudentId(string name)
         {
             var studentId = _studentsData.RetrieveObjects().Find(x => x.Name == name);
             return studentId.Id;

@@ -48,8 +48,7 @@ namespace HighSchoolManagement
                     {
                         gradesList.Add(grade.StudentGrade);
                     }
-                } else
-                {
+                } else {
                     if (grade.ClassId == subjectClassId && grade.StudentId == studentId)
                     {
                         gradesList.Add(grade.StudentGrade);
