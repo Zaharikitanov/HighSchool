@@ -41,10 +41,8 @@ namespace HighSchoolManagement
                     subjectId = classSubjectsService.GetClassSubjectById(clasSubjectName);
 
                     studentInfo += clasSubjectName 
-                        + " with average grade: " + gradesManagement.StudentAverageGrade(subjectId, studentId) 
-                        + " out of: " + gradesManagement.ClassAverageGrade(subjectId)
-                        + " and highest grade: " + gradesManagement.StudentHighestGrade(subjectId, studentId)
-                        + " out of: " + gradesManagement.ClassHighestGrade(subjectId)
+                        + " with " + gradesManagement.PersonalToClassGradeComparer(subjectId, studentId, Enums.GradeType.Highest) 
+                        + " and " + gradesManagement.PersonalToClassGradeComparer(subjectId, studentId, Enums.GradeType.Average)
                         + "\n";
                 }
             }

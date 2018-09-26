@@ -1,5 +1,6 @@
 ﻿using Datalayer.Interfaces;
 using Entities;
+using HighSchoolManagement.Enums;
 using HighSchoolManagement.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,24 +17,25 @@ namespace HighSchoolManagement
             _gradesData = gradesData;
         }
 
-        public double ClassAverageGrade(int subjectClassId)
+        public string PersonalToClassGradeComparer(int subjectClassId, int studentId, GradeType gradeType)
         {
-            return Math.Round(GetClassGrades(subjectClassId).Average(), 2);
-        }
+            string output = "";
 
-        public double ClassHighestGrade(int subjectClassId)
-        {
-            return GetClassGrades(subjectClassId).Max();
-        }
-
-        public double StudentAverageGrade(int subjectClassId, int studentId)
-        {
-            return Math.Round(GetClassGrades(subjectClassId, studentId).Average(), 2);
-        }
-
-        public double StudentHighestGrade(int subjectClassId, int studentId)
-        {
-            return GetClassGrades(subjectClassId, studentId).Max();
+            switch (gradeType)
+            {
+                case GradeType.Highest:
+                    output = "highest grade: " + GetClassGrades(subjectClassId, studentId).Max()
+                           + " out of " + GetClassGrades(subjectClassId).Max();
+                    break;
+                case GradeType.Average:
+                    output = "average grade: " + Math.Round(GetClassGrades(subjectClassId, studentId).Average(), 2)
+                           + " out of " + Math.Round(GetClassGrades(subjectClassId).Average(), 2);
+                    break;
+                default:
+                    output = "Not implemented GradeType.";
+                    break;
+            }
+            return output;
         }
 
         private List<int> GetClassGrades(int subjectClassId, int studentId = 0)
