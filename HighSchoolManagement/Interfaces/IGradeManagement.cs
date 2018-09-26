@@ -1,13 +1,9 @@
-﻿namespace HighSchoolManagement.Interfaces
+﻿using HighSchoolManagement.Enums;
+
+namespace HighSchoolManagement.Interfaces
 {
     public interface IGradesManagement
     {
-        double ClassAverageGrade(int subjectClassId);
-
-        double ClassHighestGrade(int subjectClassId);
-
-        double StudentAverageGrade(int subjectClassId, int studentId);
-
-        double StudentHighestGrade(int subjectClassId, int studentId);
+        string PersonalToClassGradeComparer(int subjectClassId, int studentId, GradeType gradeType);
     }
 }
