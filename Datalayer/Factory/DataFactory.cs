@@ -9,7 +9,6 @@ namespace Datalayer.Factory
         {
             return new GradesData();
         }
-
         public static IDataComponents<IStudent> GetStudent()
         {
             return new StudentsData();

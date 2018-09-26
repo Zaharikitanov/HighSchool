@@ -18,12 +18,10 @@ namespace HighSchoolManagement
 
             List<int> ClassSubjectIdList = new List<int>();
             string studentInfo = "";
-            string clasSubjectName = "";
-            int studentId, subjectId;
 
             if (DataFactory.GetStudent().RetrieveObjects().Exists(x => x.Name == studentName))
             {
-                studentId = ManagementFactory.StudentDetailsService().GetStudentId(studentName);
+                int studentId = ManagementFactory.StudentDetailsService().GetStudentId(studentName);
                 var studentRecords = DataFactory.GetGrades().RetrieveObjects().Where(x => x.StudentId == studentId);
 
                 studentInfo += "\n" + studentName + " is attending the following classes: \n";
@@ -33,16 +31,11 @@ namespace HighSchoolManagement
                     ClassSubjectIdList.Add(gradeId.ClassId);
                 }
 
-                ClassSubjectIdList = ClassSubjectIdList.Distinct().ToList();
-
-                foreach (var classSubjectId in ClassSubjectIdList)
+                foreach (var classSubjectId in ClassSubjectIdList.Distinct().ToList())
                 {
-                    clasSubjectName = classSubjectsService.GetClassSubjectName(classSubjectId);
-                    subjectId = classSubjectsService.GetClassSubjectById(clasSubjectName);
-
-                    studentInfo += clasSubjectName 
-                        + " with " + gradesManagement.PersonalToClassGradeComparer(subjectId, studentId, Enums.GradeType.Highest) 
-                        + " and " + gradesManagement.PersonalToClassGradeComparer(subjectId, studentId, Enums.GradeType.Average)
+                    studentInfo += classSubjectsService.GetClassSubjectName(classSubjectId)
+                        + " with " + gradesManagement.PersonalToClassGradeComparer(classSubjectId, studentId, Enums.GradeType.Highest) 
+                        + " and " + gradesManagement.PersonalToClassGradeComparer(classSubjectId, studentId, Enums.GradeType.Average)
                         + "\n";
                 }
             }
@@ -50,7 +43,6 @@ namespace HighSchoolManagement
             {
                 studentInfo = "Enter valid student name, please.";
             }
-
             return studentInfo;
         }
     }

@@ -1,7 +1,4 @@
 ﻿using Datalayer.Factory;
-using Datalayer.Interfaces;
-using Entities;
-using HighSchoolManagement;
 using HighSchoolManagement.Factories;
 using System;
 
